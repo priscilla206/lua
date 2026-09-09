@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lua Realista</title>
+<style>
+body{margin:0;background:#000;height:100vh;display:flex;justify-content:center;align-items:center;overflow:hidden}
+.moon{
+ width:320px;height:320px;border-radius:50%;
+ background:url('https://upload.wikimedia.org/wikipedia/commons/e/e1/FullMoon2010.jpg') center/105% no-repeat;
+ box-shadow: inset -20px -10px 40px black, 0 0 70px white, 0 0 140px #88aaff66;
+}
+canvas{position:fixed;inset:0;z-index:-1}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div class="moon"></div>
+<script>
+c=document.getElementById('c');x=c.getContext('2d');c.width=innerWidth;c.height=innerHeight;
+a=[];for(i=0;i<500;i++)a.push({x:Math.random()*c.width,y:Math.random()*c.height,r:Math.random()*2,o:Math.random()});
+setInterval(()=>{x.clearRect(0,0,c.width,c.height);a.forEach(p=>{x.globalAlpha=Math.random();x.fillStyle='white';x.beginPath();x.arc(p.x,p.y,p.r,0,7);x.fill()})},80);
+</script>
+</body>
+</html>
